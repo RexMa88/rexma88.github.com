@@ -1,7 +1,7 @@
 ---
 layout: post
 category : lessons
-tagline: "Supporting tagline"
+tagline: "DevMa的博客"
 tags : [intro, beginner, jekyll, tutorial]
 ---
 {% include JB/setup %}
