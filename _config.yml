@@ -1,14 +1,12 @@
 # Site settings
-title: Twenty Blog
-email: your-email@domain.com
+title: DevMa Blog
+email: rd.rexma@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  我是一名来自中国的开发者，开始写写博客，里面包含了一些技术内容。
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://locahost:4000" # the base hostname & protocol for your site
 twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  https://github.com/RexMa88
 
 # Build settings
 markdown: kramdown

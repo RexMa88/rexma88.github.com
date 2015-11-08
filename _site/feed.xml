@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevMa Blog</title>
+    <description>我是一名来自中国的开发者，开始写写博客，里面包含了一些技术内容。
+</description>
+    <link>http://locahost:4000/</link>
+    <atom:link href="http://locahost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 08 Nov 2015 15:16:56 +0800</pubDate>
+    <lastBuildDate>Sun, 08 Nov 2015 15:16:56 +0800</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>iOS UITableView</title>
+        <description>
+</description>
+        <pubDate>Sun, 08 Nov 2015 23:00:00 +0800</pubDate>
+        <link>http://locahost:4000/2015/11/08/iOS-UITableView.html</link>
+        <guid isPermaLink="true">http://locahost:4000/2015/11/08/iOS-UITableView.html</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
