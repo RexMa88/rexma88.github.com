@@ -6,13 +6,16 @@
 </description>
     <link>http://locahost:4000/</link>
     <atom:link href="http://locahost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 08 Nov 2015 15:16:56 +0800</pubDate>
-    <lastBuildDate>Sun, 08 Nov 2015 15:16:56 +0800</lastBuildDate>
+    <pubDate>Sun, 08 Nov 2015 16:35:54 +0800</pubDate>
+    <lastBuildDate>Sun, 08 Nov 2015 16:35:54 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>iOS UITableView</title>
-        <description>
+        <description>&lt;p&gt;&lt;span class=&quot;image featured&quot;&gt;&lt;img src=&quot;/images/pic01.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+#iOS UITableView
+（这是我第一次写技术博客，但是不知道为什么~这个模板的目录的title是大写字母，我个人也不是很喜欢这样，如果给各位看官带来视觉上的困扰，请谅解.）&lt;/p&gt;
+
 </description>
         <pubDate>Sun, 08 Nov 2015 23:00:00 +0800</pubDate>
         <link>http://locahost:4000/2015/11/08/iOS-UITableView.html</link>
