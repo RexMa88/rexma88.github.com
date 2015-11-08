@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>iOS UITableView Tips</title>
+  <meta name="description" content="UITableView">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:600' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://www.blackaile.com/2015/11/09/iOS-UITableView-Tips.html">
+  <link rel="alternate" type="application/rss+xml" title="DevMa Blog" href="http://www.blackaile.com/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">DevMa Blog</a>
+
+    <nav class="site-nav">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">iOS UITableView Tips</h1>
+    <p class="post-meta">Nov 9, 2015</p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="uitableview">UITableView</h2>
+
+<p>第一次写Blog,就写一个最常用的，UITableView是iPhone中最常用的UI控件之一，也许要去掉之一。所以说一些UITableView的Tips将在日常开发中起到很大的作用。</p>
+
+<h3 id="tips">Tips</h3>
+<p>(由于我之前没有什么写Blog的习惯，所以第一篇看起来会比较杂乱，后期我会慢慢的整理。)</p>
+
+<p><strong>高度</strong></p>
+
+<p>关于高度方面，很多人都喜欢在UITableViewDataSource中使用下面这个代理方法.</p>
+
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="o">-</span> <span class="p">(</span><span class="nx">CGFloat</span><span class="p">)</span><span class="nx">tableView</span><span class="p">:(</span><span class="nx">UITableView</span> <span class="o">*</span><span class="p">)</span><span class="nx">tableView</span> <span class="nx">heightForRowAtIndexPath</span><span class="p">:(</span><span class="nx">NSIndexPath</span> <span class="o">*</span><span class="p">)</span><span class="nx">indexPath</span></code></pre></div>
+
+<p>但是，如果你的TableViewCell的<strong>高度相同</strong>的话，并不需要调用这个方法，而是直接在配置你的TableView时加上<strong>rowHeight</strong>这个属性即可.上面的那个方法是在你的<strong>高度不同</strong>的时候使用的，下面就说说高度不同的时候，使用怎样的方法会比较好。</p>
+
+<p>当你的UITableViewCell高度不同的时候并且界面比较复杂的时候，我比较推荐使用<strong>纯代码</strong>生成界面，而不是使用xib或StoryBoard。首先，xib和StoryBoard不利于版本管理，而且StoryBoard中各个界面的关系连线让人看起来十分的恶心。使用<strong>纯代码</strong>生成的Cell则相对好管理一些，另外，我的建议是除非cell的风格种类极多，可以创建多个UITableViewCell，如果风格以及逻辑上并不是有很大的区别的话，尽量使用<strong>一个</strong>UITableViewCell会比较好。</p>
+
+<p>在Cell中的布局，我推荐使用Masonry.</p>
+
+  </article>
+
+</div>
+
+    </div>
+
+  </body>
+
+</html>

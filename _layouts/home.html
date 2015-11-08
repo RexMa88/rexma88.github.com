@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>DevMa Blog</title>
-  <meta name="description" content="这是我的个人博客，将记录我的技术、生活、以及我个人感兴趣的领域。
-">
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:600' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://www.blackaile.com/">
-  <link rel="alternate" type="application/rss+xml" title="DevMa Blog" href="http://www.blackaile.com/feed.xml" />
-</head>
-
+  {% include head.html %}
 
   <body>
 
@@ -26,9 +12,8 @@
       <div class='minutes'></div>
       <div class="site-name">
         <div class="site-name__inner">
-          <div class="name">DevMa Blog</div>
-          <div class="desc">这是我的个人博客，将记录我的技术、生活、以及我个人感兴趣的领域。
-</div>
+          <div class="name">{{ site.title }}</div>
+          <div class="desc">{{site.description}}</div>
           <div class="btn">Blog</div>
         </div>
       </div>
@@ -39,33 +24,16 @@
       <div class="wrapper">
 
         <nav class="site-nav">
-            
-              
-              <a class="page-link" href="/about/">About</a>
-              
-            
-              
-            
-              
-            
-              
-            
+            {% for page in site.pages %}
+              {% if page.title %}
+              <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+              {% endif %}
+            {% endfor %}
         </nav>
       </div>
     </header>
     <div class="page-content">
-        <div class="home">
-  <ul class="post-list">
-    
-      <li>
-          <a class="post-link" href="/2015/11/09/iOS-UITableView-Tips.html">
-            iOS UITableView Tips
-            <div class="post-meta">Nov 9, 2015</div>
-          </a>
-      </li>
-    
-  </ul>
-</div>
+        {{ content }}
     </div>
 
 <script>
