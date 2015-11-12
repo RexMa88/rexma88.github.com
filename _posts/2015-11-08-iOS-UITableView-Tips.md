@@ -34,7 +34,9 @@ tableView.estimatedRowHeight = 50.0
 
 当你的UITableViewCell高度不同的时候并且界面比较复杂的时候，我比较推荐使用**纯代码**生成界面，而不是使用xib或StoryBoard。首先，xib和StoryBoard不利于版本管理，而且StoryBoard中各个界面的关系连线让人看起来十分的恶心。使用**纯代码**生成的Cell则相对好管理一些，另外，我的建议是除非cell的风格种类极多，可以创建多个UITableViewCell，如果风格以及逻辑上并不是有很大的区别的话，尽量使用**一个**UITableViewCell会比较好。
 
-由于之前，用xib做过一个类似于微信朋友圈的东西，着实是把我恶心了一下，我就说说关于cell中使用AutoLayout的注意事项：
+#####xib布局
+
+由于之前，用xib做过一个类似于微信朋友圈的东西，着实是把我恶心了一下，我就先说说关于cell中使用AutoLayout的注意事项：
 
 **1.应该尽量将高度的约束都“整理清楚”，所谓“整理清楚”就是要把TopConstraint，HeightConstraint，BottomConstraint这些参数给弄好，保证我的Cell中的所有UI控件的这些参数加到一起是Cell的高度.**
 
@@ -50,3 +52,17 @@ tableView.estimatedRowHeight = 50.0
 {% endhighlight %}
 
 **会让你的界面重新布局，从而重新计算高度.**
+
+#####纯代码布局
+
+说完了xib布局，我就说说纯代码布局的注意事项，上面说过Cell尽量只是用一个，这一点是**纯代码**生成UITableViewCell得天独厚的优势，如果你在一个xib中放置很多控件，这些控件首先要把布局弄好，而且这个布局是“混乱”的，你稍微感受一下可能就会感受到眩晕感了= =
+
+在这里，我推荐一个非常好的布局工具，叫[Masonry](https://github.com/SnapKit/Masonry).这个东西我觉得叫神器都不为过，用它可以直接代替Masonry，关于这个东西的用法，我会在后续的Blog中说明。
+
+####缓存的使用
+
+事实上，这东西已经被说烂了，而且缓存(NSCache)这东西是公认的优化程序的东西，在这里也不例外，在UITableView中常见的优化方式是用利用UITableView的indexPath属性去缓存不同cell的不同高度.
+
+但是在这部分，依旧是有空间可以进行再**优化**的，我们进行项目开发的时候，一般都是先从后台获取数据，生成model，好！现在假设每个Cell的布局你已经知道了，那我可不可以在获取到model之后~直接在model层获取高度，**因为，cell的高度是由内容决定的**，我相信这点没有人会质疑的，所以生成model之后，直接获取高度。
+
+这时，可能有人会问，那既然高度可以缓存，那可不可以用NSCache去缓存cell，其实这个我还真做过，但是，我暂时还不确定NSCache提取Cell的速度会比TableView直接重用要快。所以这里先留个悬念。
