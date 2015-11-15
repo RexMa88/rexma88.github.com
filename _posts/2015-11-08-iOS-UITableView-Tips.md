@@ -66,3 +66,8 @@ tableView.estimatedRowHeight = 50.0
 但是在这部分，依旧是有空间可以进行再**优化**的，我们进行项目开发的时候，一般都是先从后台获取数据，生成model，好！现在假设每个Cell的布局你已经知道了，那我可不可以在获取到model之后~直接在model层获取高度，**因为，cell的高度是由内容决定的**，我相信这点没有人会质疑的，所以生成model之后，直接获取高度。
 
 这时，可能有人会问，那既然高度可以缓存，那可不可以用NSCache去缓存cell，其实这个我还真做过，但是，我暂时还不确定NSCache提取Cell的速度会比TableView直接重用要快。所以这里先留个悬念。
+
+####关于RunLoop在UITableView中的使用
+
+RunLoop这个东西大家肯定是不陌生的，如果大家真的对RunLoop陌生的话~那我推荐去看看这篇[深入理解RunLoop](http://blog.ibireme.com/2015/05/18/runloop/),事实上tableView在静止的时候，是出于NSRunLoopModeDefault状态，在这个mode时，我们可以刷新我们的cell并缓存，这个方式的使用是参考[UITableView-FDTemplateLayoutCell](https://github.com/forkingdog/UITableView-FDTemplateLayoutCell),同时也很感谢百度的孙源，这是他的[Blog链接](http://blog.sunnyxx.com/).
+
