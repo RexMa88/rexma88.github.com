@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Developer Ma Blog">
+
+    <title>iOS UITableView Tips - Developer Ma</title>
+
+    <link rel="canonical" href="http://wwww.blackaile.com/2015/11/09/iOS-UITableView-Tips/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Developer Ma</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+                <li>
+                    <a href="/">Developer Ma Blog</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/post-bg-04.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>iOS UITableView Tips</h1>
+                    
+                    <h2 class="subheading">iOS Develop</h2>
+                    
+                    <span class="meta">Posted by Developer Ma on November 9, 2015</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<h2 id="uitableview">UITableView</h2>
+
+<p>第一次写Blog,就写一个最常用的，UITableView是iPhone中最常用的UI控件之一，也许要去掉之一。所以说一些UITableView的Tips将在日常开发中起到很大的作用。</p>
+
+<h3 id="tips">Tips</h3>
+<p>(由于我之前没有什么写Blog的习惯，所以第一篇看起来会比较杂乱，后期我会慢慢的整理。)</p>
+
+<h4 id="section">高度</h4>
+
+<p>关于高度方面，很多人都喜欢在UITableViewDataSource中使用下面这个代理方法.</p>
+
+<pre><code>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+</code></pre>
+
+<p>但是，如果你的TableViewCell的<strong>高度相同</strong>的话，并不需要调用这个方法，而是直接在配置你的TableView时加上<strong>rowHeight</strong>这个属性即可.下面就说说<strong>高度不同</strong>的时候，使用怎样的方法会比较好。</p>
+
+<pre><code>tableView.estimatedRowHeight = 50.0
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+</code></pre>
+
+<p>见名知意，上边这两句话是用来说明估算高度的，但是这话说的很笼统，你让我估算，每个Cell的高度真心没有特别统一的，你让我怎么估算，我的建议是当cell的高度在一定范围之内采用这种方法比较好，并且取平均值，我相信各位的数学如果不是体育老师教的话，平均值的计算方法应该是不用我说的.</p>
+
+<p><strong>Warning</strong>:如果你真的无法估算出高度的平均值的话，<strong>慎用！！！</strong>因为UITableView是UIScrollView的子类，UIScrollView的contentSize是由<strong>UITableView的Cell的高度与numberOfCell的数量</strong>决定的，所以，就算是估算高度，也会转换成真正的高度的，但转换的过程中，会出现“即视感”的跳跃.所以我的建议是老老实实地使用第一句的方法去计算高度。</p>
+
+<h4 id="uitableviewcell">关于UITableViewCell的布局</h4>
+
+<p>当你的UITableViewCell高度不同的时候并且界面比较复杂的时候，我比较推荐使用<strong>纯代码</strong>生成界面，而不是使用xib或StoryBoard。首先，xib和StoryBoard不利于版本管理，而且StoryBoard中各个界面的关系连线让人看起来十分的恶心。使用<strong>纯代码</strong>生成的Cell则相对好管理一些，另外，我的建议是除非cell的风格种类极多，可以创建多个UITableViewCell，如果风格以及逻辑上并不是有很大的区别的话，尽量使用<strong>一个</strong>UITableViewCell会比较好。</p>
+
+<h5 id="xib">xib布局</h5>
+
+<p>由于之前，用xib做过一个类似于微信朋友圈的东西，着实是把我恶心了一下，我就先说说关于cell中使用AutoLayout的注意事项：</p>
+
+<p><strong>1.应该尽量将高度的约束都“整理清楚”，所谓“整理清楚”就是要把TopConstraint，HeightConstraint，BottomConstraint这些参数给弄好，保证我的Cell中的所有UI控件的这些参数加到一起是Cell的高度.</strong></p>
+
+<p><strong>2.巧用优先级，优先级的概念我想我应该是不用说了，这一点体现在朋友圈里最典型的就是当你没有对该条朋友圈消息进行评论或者点赞的时候，你应该自动地忽略这部分的控件（我是用的是UITableView进行评论，点赞功能），这时就应该降低这部分控件的优先级，使得他“有可能”会消失</strong></p>
+
+<p><strong>3.动态刷新的时候调用</strong></p>
+
+<pre><code>[cell setNeedsUpdateConstraints];
+[cell updateConstraintsIfNeeded];		
+[cell setNeedsLayout];
+[cell layoutIfNeeded];
+</code></pre>
+
+<p><strong>会让你的界面重新布局，从而重新计算高度.</strong></p>
+
+<h5 id="section-1">纯代码布局</h5>
+
+<p>说完了xib布局，我就说说纯代码布局的注意事项，上面说过Cell尽量只是用一个，这一点是<strong>纯代码</strong>生成UITableViewCell得天独厚的优势，如果你在一个xib中放置很多控件，这些控件首先要把布局弄好，而且这个布局是“混乱”的，你稍微感受一下可能就会感受到眩晕感了= =</p>
+
+<p>在这里，我推荐一个非常好的布局工具，叫<a href="https://github.com/SnapKit/Masonry">Masonry</a>.这个东西我觉得叫神器都不为过，用它可以直接代替Masonry，关于这个东西的用法，我会在后续的Blog中说明。</p>
+
+<h4 id="section-2">缓存的使用</h4>
+
+<p>事实上，这东西已经被说烂了，而且缓存(NSCache)这东西是公认的优化程序的东西，在这里也不例外，在UITableView中常见的优化方式是用利用UITableView的indexPath属性去缓存不同cell的不同高度.</p>
+
+<p>但是在这部分，依旧是有空间可以进行再<strong>优化</strong>的，我们进行项目开发的时候，一般都是先从后台获取数据，生成model，好！现在假设每个Cell的布局你已经知道了，那我可不可以在获取到model之后~直接在model层获取高度，<strong>因为，cell的高度是由内容决定的</strong>，我相信这点没有人会质疑的，所以生成model之后，直接获取高度。</p>
+
+<p>这时，可能有人会问，那既然高度可以缓存，那可不可以用NSCache去缓存cell，其实这个我还真做过，但是，我暂时还不确定NSCache提取Cell的速度会比TableView直接重用要快。所以这里先留个悬念。</p>
+
+<h4 id="runloopuitableview">关于RunLoop在UITableView中的使用</h4>
+
+<p>RunLoop这个东西大家肯定是不陌生的，如果大家真的对RunLoop陌生的话~那我推荐去看看这篇<a href="http://blog.ibireme.com/2015/05/18/runloop/">深入理解RunLoop</a>,事实上tableView在静止的时候，是出于NSRunLoopModeDefault状态，在这个mode时，我们可以刷新我们的cell并缓存，这个方式的使用是参考<a href="https://github.com/forkingdog/UITableView-FDTemplateLayoutCell">UITableView-FDTemplateLayoutCell</a>,同时也很感谢百度的孙源，这是他的<a href="http://blog.sunnyxx.com/">Blog链接</a>.</p>
+
+
+
+                <hr>
+
+                <ul class="pager">
+                    
+                    
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/MustangSoul">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Developer Ma 2015</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script>
+        window.onload = function() {
+            setInterval("geek()",500);
+        }
+    </script>
+    <style>
+        #one {
+            background-color:blue;
+            width:10px;
+            height:10px;
+            margin:0;
+            overflow:hidden;
+            transition: height 0.5s;
+        }
+        #one.expand {
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+<div id="one" onload="setinterval(geek(),1000)"></div>
+
+<script>
+    function geek() {
+        $('#one').click();
+    }
+
+    $('#one').click(function(){
+        console.log(1);
+        if ($(this).hasClass('expand')) {
+            $(this).removeClass('expand')
+        } else {
+            $(this).addClass('expand') }
+    });
+</script>
+</body>
+</html>

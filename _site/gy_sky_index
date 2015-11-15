@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Gy-sky.GitHub.com : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>高原航拍</title>
+
+    <style>
+        body {
+            margin:0;
+        }
+        .menu {
+            margin:0;
+            background-color:black;
+            height:60px;
+            width:100%;
+        }
+        .wrapper1 {
+            margin: 0 auto;
+            background-color:black;
+            width:130px;
+            height:60px;
+            float:left;
+        }
+        .wrapper2 {
+            margin: 0 auto;
+            background-color:blue;
+            width:130px;
+            height:60px;
+            float:left;
+        }
+        .wrapper3 {
+            margin: 0 auto;
+            background-color:black;
+            width:130px;
+            height:60px;
+            float:left;
+        }
+        .wrapper4 {
+            margin: 0 auto;
+            background-color:blue;
+            width:130px;
+            height:60px;
+            float:left;
+        }
+        .wrapperbg1 {
+            height:60px;
+            width:130px;
+            position:absolute;
+            z-index:2;
+            background-color:black;
+            text-align:center;
+        }
+        .wrapperbg2 {
+            left:130px;
+            height:60px;
+            width:130px;
+            position:absolute;
+            z-index:2;
+            background-color:black;
+            text-align:center;
+        }
+        .wrapperbg3 {
+            left:260px;
+            height:60px;
+            width:130px;
+            position:absolute;
+            z-index:2;
+            background-color:black;
+            text-align:center;
+        }
+        .wrapperbg4 {
+            left:390px;
+            height:60px;
+            width:130px;
+            position:absolute;
+            z-index:2;
+            background-color:black;
+            text-align:center;
+        }
+        .block2 {
+            width:130px;
+            height:300px;
+            background-color:red;
+            margin-top:-400px;
+            z-index:1;
+            transition: margin-top 0.35s;
+            position:relative;
+            right:0;
+        }
+        .block3 {
+            width:130px;
+            height:300px;
+            background-color:red;
+            margin-top:-400px;
+            z-index:1;
+            transition: margin-top 0.35s;
+            position:relative;
+            right:0;
+        }
+        .block4 {
+            width:130px;
+            height:300px;
+            background-color:red;
+            margin-top:-400px;
+            z-index:1;
+            transition: margin-top 0.35s;
+            position:relative;
+            right:0;
+        }
+        .subblockone {
+            width:130px;
+            height:100px;
+            background-color:red;
+            text-align:center;
+        }
+        .subblocktwo {
+            width:130px;
+            height:100px;
+            background-color:blue;
+            text-align:center;
+        }
+        .subblockthree {
+            width:130px;
+            height:100px;
+            background-color:black;
+            text-align:center;
+        }
+        .wrapper2:hover .block2 {
+            margin-top:60px;
+        }
+        .wrapper3:hover .block3 {
+            margin-top:60px;
+        }
+        .wrapper4:hover .block4 {
+            margin-top:60px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="menu">
+    <div class="wrapper1">
+        <div class="wrapperbg1">
+            <h4 style="color:white">高原航拍</h4>
+        </div>
+    </div>
+    <div class="wrapper2">
+        <div class="wrapperbg2">
+            <h5 style="color:deepskyblue">&#8595;高原个人介绍</h5>
+        </div>
+        <div class="block2">
+            <div class="subblockone">
+                <a href="http://www.baidu.com" style="color:white;">介绍1</a>
+            </div>
+            <div class="subblocktwo">
+                <a href="http://www.baidu.com" style="color:white;">介绍2</a>
+            </div>
+            <div class="subblockthree">
+                <a href="http://www.baidu.com" style="color:white;">介绍3</a>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper3">
+        <div class="wrapperbg3">
+            <h5 style="color:deepskyblue">&#8595;作品集</h5>
+        </div>
+        <div class="block3">
+            <div class="subblockone">
+                <a href="http://www.baidu.com" style="color:white;">作品1</a>
+            </div>
+            <div class="subblocktwo">
+                <a href="http://www.baidu.com" style="color:white;">作品2</a>
+            </div>
+            <div class="subblockthree">
+                <a href="http://www.baidu.com" style="color:white;">作品3</a>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper4">
+        <div class="wrapperbg4">
+            <h5 style="color:deepskyblue">&#8595;合作伙伴</h5>
+        </div>
+        <div class="block4">
+            <div class="subblockone">
+                <a href="http://www.baidu.com" style="color:white;">伙伴1</a>
+            </div>
+            <div class="subblocktwo">
+                <a href="http://www.baidu.com" style="color:white;">伙伴2</a>
+            </div>
+            <div class="subblockthree">
+                <a href="http://www.baidu.com" style="color:white;">伙伴3</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<!--
+<div id="header_wrap" class="outer">
+    <header class="inner">
+        <a id="forkme_banner" href="https://github.com/gy-sky">高原航拍</a>
+        <h1 id="project_title">www.GY-SKY.com</h1>
+        <h2 id="project_tagline"></h2>
+    </header>
+</div>
+-->
+<!-- MAIN CONTENT -->
+<div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+        <h3>
+            <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>标题</h3>
+
+        <p>共同社8月21日报道称，中国阅兵领导小组办公室副主任曲睿在新闻发布会上说，包括俄罗斯、哈萨克斯坦在内的10多个国家已决定派方队或代表队参加阅兵。</p>
+
+        <h3>
+            <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>标题</h3>
+
+        <p>共同社8月21日报道称，中国阅兵领导小组办公室副主任曲睿在新闻发布会上说，包括俄罗斯、哈萨克斯坦在内的10多个国家已决定派方队或代表队参加阅兵。</p>
+
+        <h3>
+            <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>标题</h3>
+
+        <p>共同社8月21日报道称，中国阅兵领导小组办公室副主任曲睿在新闻发布会上说，包括俄罗斯、哈萨克斯坦在内的10多个国家已决定派方队或代表队参加阅兵。</p>
+
+        <h3>
+            <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>标题</h3>
+
+        <p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> 共同社8月21日报道称，中国阅兵领导小组办公室副主任曲睿在新闻发布会上说，包括俄罗斯、哈萨克斯坦在内的10多个国家已决定派方队或代表队参加阅兵。</p>
+
+        <h3>
+            <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>标题</h3>
+
+        <p>样例.</p>
+    </section>
+</div>
+
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+    <footer class="inner">
+        <p>Published with <a href="https://www.geekzhou.com">GitHub Pages</a></p>
+    </footer>
+</div>
+
+</body>
+</html>

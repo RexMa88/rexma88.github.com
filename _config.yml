@@ -1,12 +1,19 @@
 # Site settings
-title: DevMa Blog
+title: Developer Ma
+header-img: img/home-bg.jpg
 email: rd.rexma@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  这是我的个人博客，将记录我的技术、生活、以及我个人感兴趣的领域。
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://www.blackaile.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+description: "Developer Ma Blog"
+baseurl: ""
+url: "http://wwww.blackaile.com"
+github_username:  MustangSoul
+# zhihu_username:  zhou-geek
 
 # Build settings
 markdown: kramdown
+highlighter: pygments
+permalink: pretty
+paginate: 30
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+
+
+

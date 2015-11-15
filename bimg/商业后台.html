@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0056)http://houtai.meiliworks.com/partnerCfgs/edit?cfgs_id=34 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script language="JavaScript" src="./商业后台_files/util.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="./商业后台_files/jquery-2.1.3.min.js"></script>
+<script language="JavaScript" src="./商业后台_files/jquery.browser.min.js"></script>
+<script language="JavaScript" src="./商业后台_files/jquery.ui.core.min.js"></script>
+<script language="JavaScript" src="./商业后台_files/jquery.ui.datepicker.js"></script>
+<script language="JavaScript" src="./商业后台_files/jquery.ui.datepicker-zh-CN.js"></script>
+<script language="JavaScript" src="./商业后台_files/supermenu.js"></script>
+<script language="JavaScript" src="./商业后台_files/datetimepicker.js"></script>
+    <script language="JavaScript" src="./商业后台_files/warn.js"></script>
+    <script language="JavaScript" src="./商业后台_files/bootstrap.min.js"></script>
+<!--图表框架css-->
+<link rel="stylesheet" type="text/css" href="./商业后台_files/base.css">
+	<link rel="stylesheet" type="text/css" href="./商业后台_files/boxAlert.css">
+<link rel="stylesheet" type="text/css" href="./商业后台_files/jquery.ui.core.css">
+<link rel="stylesheet" type="text/css" href="./商业后台_files/jquery.ui.theme.css">
+<link rel="stylesheet" type="text/css" href="./商业后台_files/jquery.ui.datepicker.css">
+<link rel="stylesheet" type="text/css" href="./商业后台_files/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./商业后台_files/dropdown-submenu.css">
+    <link rel="stylesheet" type="text/css" href="./商业后台_files/jquery.ui.datepicker.css">
+<!--显示隐藏控件CSS -->
+
+<title>商业后台</title>
+<script language="javascript">
+<!--
+function setCss($src,$to,num){
+	$src.after($to);
+	$to.css({
+		'position':'absolute',
+		'top':'0px',
+		'width':$src.parent().width() +'px',
+		'height':'auto',
+		'left':($src.parent().width())*num +'px'
+	});
+}
+$(function(){
+	var menuOptions = { 
+            delay:       800,  
+            speed:       'fast' ,
+            animation:   {opacity:'show',height:'show'},
+            dropShadows: false  ,
+            onBeforeShow: fixMenu4Chrome
+        };
+	$("#menu").supersubs({ 
+            minWidth:    12,   
+            maxWidth:    27,   
+            extraWidth:  1  
+        }).supermenu(menuOptions); 
+	$("#loginUser").supermenu(menuOptions);
+	//初始化菜单
+	var stat =1;
+	var $ame =$("#viewAllCollect");
+	$dv = $('.showMore');
+	var len = $dv.children('li').length;
+	//生成菜单
+	var bb = len;
+	if(len <= 20){
+		$dv.css({
+			'position':'absolute',
+			'top':'0px',
+			'left': $ame.parent().width() +'px'
+		}).show();
+	}else{
+		$atdv2 = $('<div></div>');
+		$atdv3 = $('<div></div>');
+		$atdv4 = $('<div></div>');
+		$atdv5 = $('<div></div>');
+		$atdv6 = $('<div class="hrefAll">太多了，显示不了</div>');
+		$dv.children('li').each(function(index, element) {
+			if( index >= 0 && index < 20){
+				$atdv2.append($(this));
+			}else if(index  >=20 && index < 40){
+				$atdv3.append($(this));
+			}else if(index  >=40 && index < 60){
+				$atdv4.append($(this));
+			}else if(index  >=60 && index < 80){
+				$atdv5.append($(this));
+			}
+		});
+		setCss($dv,$atdv2,1);	
+		setCss($dv,$atdv3,2);	
+		setCss($dv,$atdv4,3);	
+		setCss($dv,$atdv5,4);	
+		if( bb > 80 ){
+			setCss($dv,$atdv6,5);
+		}		
+	}		  
+
+    function fixMenu4Chrome(){
+    	var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;
+		if (isChrome) {
+		        $(".sf-menu>li.main_ul.sfHover>ul").css("top","2.2em");
+		}
+    }
+	
+	$("#searchkey").focus(function(event){
+		if(this.value == '功能查找') $(this).attr('value','');
+	});
+	
+	$("#searchkey").blur(function(event){
+		if(this.value == '') $(this).attr('value','功能查找');
+	});
+	//返回顶部功能
+    var $backToTopTxt = "回到顶部", $backToTopEle = $('<div class="backToTop"></div>').appendTo($("body"))
+	    .text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
+	        $("html, body").animate({ scrollTop: 0 }, 120);
+	}), $backToTopFun = function() {
+	    var st = $(document).scrollTop(), winh = $(window).height();
+	    (st > 0)? $backToTopEle.show(): $backToTopEle.hide();
+	    //IE6下的定位
+	    if (!window.XMLHttpRequest) {
+	        $backToTopEle.css("top", st + winh - 166);
+	    }
+	};
+	$(window).bind("scroll", $backToTopFun);
+	$(function() { $backToTopFun(); });
+	//获取最新通知
+	$.getJSON("http://works.meiliworks.com//news/ajaxJsonp_refreshNewMsgNum?format=json&jsoncallback=?",
+    		function(data){
+        		if(data && data.count>0){
+        			$(".navMsgInfo sup").html(data.count).show();
+        		}
+    	});
+});
+function Trim(str)
+{
+	return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+$(function(){
+	$('#debug_header').bind('click', function(){
+		//alert('aa');
+		$('#debug_content').toggle();
+	});
+	
+	$.datepicker.setDefaults( $.datepicker.regional[ "zh-CN" ] );
+	$( ".datepicker" ).datepicker({
+		changeMonth: true,
+		changeYear: true
+	});
+});
+function addCollect(mid) {
+	 $.ajax({
+		    async:false,
+	        type: "GET",
+	        url: 'http://work.meiliworks.com/admin_menu/ajax_addCollect',
+		    data: 'mid='+ mid,
+		    dataType: "jsonp",
+		    jsonp: 'callBaseCollect',
+		    success: callBaseCollect,
+		    error: function (XMLHttpRequest, textStatus, errorThrown){
+		    	if(XMLHttpRequest.readyState == 4){
+		    		 alert("添加成功，刷新后可看到效果1");
+		    	 }
+		    }
+	   });
+}
+function callBaseCollect(){
+    alert("添加成功，刷新后可看到效果");
+}
+-->
+</script>
+<!--JS特效方法变量-->
+<!--JS特效方法变量-->
+</head>
+<body>
+
+<!-- top begin -->
+<header class="navbar-inverse" id="top" role="banner" style="margin-bottom:20px;">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="http://houtai.meiliworks.com/" style="color:white">houtai</a>
+	</div>
+
+	<nav class="collapse  navbar-collapse" role="navigation">
+		<ul class="nav navbar-nav">
+						<li class="dropdown">
+								<a href="http://houtai.meiliworks.com/partnerCfgs/edit?cfgs_id=34#" data-toggle="dropdown" class="dropdown-toggle"><span class="text">收藏夹</span><b class="caret"></b></a>
+								<ul class="dropdown-menu">
+																				<li><a title="" href="http://houtai.meiliworks.com/partnerCfgs/edit?cfgs_id=34#"><i class="icon-bar-chart"></i> 暂无收藏</a>
+												<ul class="dropdown-menu">
+													</ul>
+					</li>
+														</ul>
+			</li>
+
+						<li class="dropdown">
+								<a href="http://houtai.meiliworks.com/partnerCfgs/edit?cfgs_id=34#" data-toggle="dropdown" class="dropdown-toggle"><span class="text">无 线</span><b class="caret"></b></a>
+								<ul class="dropdown-menu">
+																				<li class="dropdown-submenu"><a title="" href="http://works.meiliworks.com/trade/partnerList"><i class="icon-bar-chart"></i> 特卖</a>
+												<ul class="dropdown-menu">
+																					<li><a href="http://works.meiliworks.com/trade/partnerList"><i class="icon-bar-chart"></i> 商家查询</a></li>
+																				</ul>
+					</li>
+														</ul>
+			</li>
+
+					</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown" id="profile-messages"><a title="" href="http://houtai.meiliworks.com/partnerCfgs/edit?cfgs_id=34#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">yanzhourd1</span><b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a target="_blank" href="http://speed.meilishuo.com/user/profile/"><i class="icon-user"></i> 个人信息</a></li>
+					<li class="divider"></li>
+					<li><a target="_blank" href="http://speed.meilishuo.com/time/time_manage"><i class="icon-check"></i> 我的日程</a></li>
+					<li class="divider"></li>
+					<li><a href="http://houtai.meiliworks.com/home/logout"><i class="icon-key"></i> 退出登录</a></li>
+				</ul>
+			</li>
+			<li class=""><a title="" href="http://houtai.meiliworks.com/home/logout"><i class="icon icon-share-alt"></i> <span class="text">退出登录</span></a></li>
+		</ul>
+	</nav>
+</header>
+
+<!-- top end -->
+
+<!-- 主工作区 begin -->
+<div id="workarea">
+<script type="text/javascript" src="./商业后台_files/editor_all.js"></script>
+<script type="text/javascript" src="./商业后台_files/editor_config.js"></script>
+<style>
+#show_c { margin:10px; }
+#show_t { margin:10px; font-size:16px; font-weight:bold; }
+.btn{cursor: pointer;}
+input[type="submit"]{cursor: pointer;}
+</style>
+<script type="text/javascript">
+function chkform() {
+	if($("#name").val() == "") {
+		alert("配置名称不能为空");
+		return false;
+	}
+	if($("#data").val() == "") {
+		alert("配置内容不能为空!");
+		return false;
+	}
+}
+</script>
+<div id="show_t">
+	<input class="btn" type="button" value="编辑配置" onclick="javascript:window.location=&quot;/partnerCfgs/edit?cfgs_id=34&quot;">
+	<input class="btn" type="button" value="配置列表" onclick="javascript:window.location=&quot;/partnerCfgs/list&quot;">
+</div>
+<div id="show_c">
+<form name="form1" method="post" action="./商业后台_files/商业后台.html" enctype="multipart/form-data" onsubmit="return chkform();">
+	<input type="hidden" name="do" value="yes">
+	<table>
+		<tbody><tr>
+			<td class="ti">名称：</td>
+			<td><input type="text" name="name" id="name" size="100" value="店铺装修—粉丝专题页白名单"></td>
+		</tr>
+		<tr>
+			<td class="ti">标识：</td>
+			<td><input type="text" name="code" id="code" value="shopdecoration-fans-subject-whitelist" disabled="disabled"></td>
+		</tr>
+		<tr>
+			<td class="ti">内容：</td>
+			<td><textarea name="data" id="data" rows="10" cols="100">[100843,101277,100014,189320,105329,102457,167679,114877,106761,106741,141849,154127,107817,103573,145313,108101,101323,101313,103601,103417,111057,103083,1003675,174267,115691,164101,1006223,195050,195616,1002568,107889,104395,161075,183262,103447,100054,186230,150391,102703,133295,121885,100604,102113,119399,107293,140061,100440370,100556,175457,113955,1002924,100183265,106993,104777,105191,102997,127339,113077,104543,111348,103509,104815,101633,101949,151751,104875,132373,101645,102231,103003,102973,102441,108017,103569,106517,102357,111090,106621,101747,101841,105059,108500,101791,101847,102037,108174,103391,102077,110876,130925,108107,102493,106365,108442,102063,101943,107101,102901,111744,102571,104625,103027,103819,104521,111871,142839,103007,117767,102267,113283,102225,101823,115547,105745,101917,104141,102289,128275,103525,111741,111722,184342,100717,126277,108135,103531,101777,157007,123379,107649,108410,103475,114130,115248,151689]</textarea></td>
+		</tr>
+		<tr>
+			<td class="ti">备注：</td>
+			<td><textarea name="remark" id="remark" rows="10" cols="100">店铺装修，粉丝专题页白名单配置</textarea></td>
+		</tr>
+		<tr>
+			<td></td><td><input type="submit" name="submit" value=" 保 存 "></td>
+		</tr>
+	</tbody></table>
+</form>
+</div>
+
+</div>
+<!-- 主工作区 end -->
+<div id="showyDiv">
+</div>
+
+
+<div class="backToTop" title="回到顶部" style="display: none;">回到顶部</div></body></html>

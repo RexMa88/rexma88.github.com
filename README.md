@@ -1,4 +1,2 @@
-### Clean Theme
-
-![Alt text](screen.png)
-
+# mustangsoul.github.com
+Personal Technical Blog

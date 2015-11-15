@@ -1,7 +1,10 @@
 ---
 layout: post
 title: "iOS UITableView Tips"
+subtitle: "iOS Develop"
+author": "Rex Ma"
 date: 2015-11-08 23:42:35
+header-img: "img/post-bg-04.jpg"
 ---
 
 ##UITableView
@@ -15,16 +18,12 @@ date: 2015-11-08 23:42:35
 
 关于高度方面，很多人都喜欢在UITableViewDataSource中使用下面这个代理方法.
 
-{% highlight go %}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{% endhighlight %}
+	- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 但是，如果你的TableViewCell的**高度相同**的话，并不需要调用这个方法，而是直接在配置你的TableView时加上**rowHeight**这个属性即可.下面就说说**高度不同**的时候，使用怎样的方法会比较好。
 
-{% highlight go %}
-tableView.estimatedRowHeight = 50.0
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{% endhighlight %}
+	tableView.estimatedRowHeight = 50.0
+	- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 见名知意，上边这两句话是用来说明估算高度的，但是这话说的很笼统，你让我估算，每个Cell的高度真心没有特别统一的，你让我怎么估算，我的建议是当cell的高度在一定范围之内采用这种方法比较好，并且取平均值，我相信各位的数学如果不是体育老师教的话，平均值的计算方法应该是不用我说的.
 
@@ -44,12 +43,10 @@ tableView.estimatedRowHeight = 50.0
 
 **3.动态刷新的时候调用**
 
-{% highlight go %}
-[cell setNeedsUpdateConstraints];
-[cell updateConstraintsIfNeeded];		
-[cell setNeedsLayout];
-[cell layoutIfNeeded];
-{% endhighlight %}
+	[cell setNeedsUpdateConstraints];
+	[cell updateConstraintsIfNeeded];		
+	[cell setNeedsLayout];
+	[cell layoutIfNeeded];
 
 **会让你的界面重新布局，从而重新计算高度.**
 

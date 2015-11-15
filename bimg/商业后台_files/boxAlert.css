@@ -1,0 +1,36 @@
+ .alertBox{
+	 width:300px;
+	 height:auto;
+	 position:fixed;
+ 	 border:0px solid #ccc;
+	 border-radius:5px;
+	 background:#428bca;
+	 padding:3px;
+ 	}
+.boxCloser{ 
+ 	border:1px solid #ccc;
+	border-radius:5px;
+	top:1px;
+	right:1px;
+	position:absolute;
+	width:14px;
+	height:14px;
+	font-size:14px;
+	margin:2px;
+	padding-left;4px;
+	float:right;
+	background-color:#fff;
+	line-height:14px;
+	cursor:pointer
+}
+.boxCont{
+	margin-top:16px;
+	font-size:14px;
+	font-weight:bolder;
+	height:auto;
+	background-color:#fff;
+	padding:10px;
+	color:#e78f08;
+	line-height:15px;
+}
+

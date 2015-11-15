@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <style type = "text/css">
+        .geekzhou {
+            display: none;
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 70%;
+            height:70%;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+        .pic {
+            display: none;
+            position: absolute;
+            top:0;
+            left: 95%;
+            background-color:red;
+            width:5%;
+            height:5%;
+            z-index:1003;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body style = "margin:0;">
+    <div id="geek" class="geekzhou">
+        <iframe height=100% width=100% src="http://player.youku.com/embed/XMzQwNDczODQw" frameborder=0 allowfullscreen></iframe>
+        <div class="pic" id="zhou"></div>
+    </div>
+    <div id="sample" style = "width:100%;height:100px;background-color:blue;"></div>
+        <div style = "width:70%;height:3500px;text-align:center;">
+            <!--
+            <iframe height=450 width=710 src="http://player.youku.com/embed/XMzQwNDczODQw" frameborder=0 allowfullscreen style = "margin-bottom:30px; "></iframe>
+            <iframe height=450 width=710 src="http://player.youku.com/embed/XMzQwNDczODQw" frameborder=0 allowfullscreen></iframe>
+            <iframe height=450 width=710 src="http://player.youku.com/embed/XMzQwNDczODQw" frameborder=0 allowfullscreen></iframe>
+            -->
+        </div>
+        <div style = "letter:70%;width:29%;height:500px;positon:fixed;border:solid black;">
+            <h1>Sample</h1>
+        </div>
+</body>
+<script>
+    $('#sample').click(function(){
+        $('#geek').css('display','block');
+        $('#zhou').css('display','block');
+    });
+    $('#zhou').click(function(){
+        $('#geek').css('display','none');
+        $('#zhou').css('display','none');
+    });
+</script>
+</html>
+
