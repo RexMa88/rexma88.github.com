@@ -26,3 +26,13 @@ header-img: "img/post-bg-01.jpg"
 可以通过建立两个interface，一个是request部分，另一个是model部分，直接在请求部分转换成model，并针对业务逻辑写一些方法，在Controller层中用request的对象去调用.
 
 ###Cell与Category
+通过对UITableViewCell进行Category，可以减少Cell与model,cell与TableView之间的耦合度达到分离的效果。
+
+###创建新的DataSource
+通过创建一个NSObject文件，并且遵守UITableViewDataSource，使大部分的DataSource方法可以在该文件中时间。在你需要UITableView的界面中声明该自定义DataSource实例.
+	
+	@property (nonatomic, strong) customDataSource * dataSource;
+	self.tableView.dataSource = self.dataSource;
+	
+
+
