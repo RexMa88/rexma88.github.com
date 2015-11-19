@@ -68,3 +68,15 @@ header-img: "img/post-bg-04.jpg"
 
 RunLoop这个东西大家肯定是不陌生的，如果大家真的对RunLoop陌生的话~那我推荐去看看这篇[深入理解RunLoop](http://blog.ibireme.com/2015/05/18/runloop/),事实上tableView在静止的时候，是出于NSRunLoopModeDefault状态，在这个mode时，我们可以刷新我们的cell并缓存，这个方式的使用是参考[UITableView-FDTemplateLayoutCell](https://github.com/forkingdog/UITableView-FDTemplateLayoutCell),同时也很感谢百度的孙源，这是他的[Blog链接](http://blog.sunnyxx.com/).
 
+我们在滑动TableView的过程中，加载图片时会出现掉帧的情况，RunLoop在滑动时，mode为UITrackingRunLoopMode，在静止的时候切换为NSDefaultRunLoopMode，所以为了避免滑动时不掉帧，可以当滑动结束，静止的时候在NSDefaultRunLoopMode下对图片进行加载。
+
+	[self.image performSelector:@selector(setImage:)
+               withObject:image
+               afterDelay:0
+                  inModes:@[NSDefaultRunLoopMode]];
+                 
+这样的话，就可以让TableView滑动的时候更加的流畅.
+
+####关于-systemLayoutSizeFittingSize:
+这个API我并不推崇，原因在于不如手动计算快，而且对于AutoLayout要求很高，如果你自认为还没有足够高的能力去驾驭，尽量不要使用.
+
