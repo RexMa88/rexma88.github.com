@@ -33,6 +33,3 @@ header-img: "img/post-bg-01.jpg"
 	
 	@property (nonatomic, strong) customDataSource * dataSource;
 	self.tableView.dataSource = self.dataSource;
-	
-
-
