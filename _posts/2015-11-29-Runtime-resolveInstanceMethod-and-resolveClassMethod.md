@@ -12,9 +12,9 @@ Objective-C的Runtime机制想必大家并不陌生，这是由于Objective-C是
 ##消息转发
 消息转发可以说是Runtime机制的核心，里面方法的实现是通过**objc_msgSend(obj,method)**传递实现的。而这又与objc\_object、objc\_class的结构有关。如图所示：
 
-![objc_object_struct](https://github.com/RexMa88/rexma88.github.com/blob/master/img/objc_object.png)
+![objc_object_struct](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/objc_object.png)
 
-![objc_class_struct](https://github.com/RexMa88/rexma88.github.com/blob/master/img/objc_class.png)
+![objc_class_struct](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/objc_class.png)
 
 请注意一下这个objc\_object结构体中就一个isa指针，如果看官们自己去寻找一下这个指针的话，会在objc\_object结构体上看见其实isa是objc\_class指针.
 
