@@ -4,7 +4,7 @@ title: "Runtime resolveInstanceMethod and resolveClassMethod"
 subtitle: "iOS Develop"
 author: "Rex Ma"
 date: 2015-11-29 16:17:45
-header-img: "img/post-bg-06"
+header-img: "img/post-bg-06.jpg"
 ---
 #Runtime
 Objective-C的Runtime机制想必大家并不陌生，这是由于Objective-C是动态语言所决定的，Runtime机制也可以说是在日常iOS开发中的“黑科技”兼“双刃剑”.以后我会针对这个机制进行一个长期的整理.
@@ -12,7 +12,7 @@ Objective-C的Runtime机制想必大家并不陌生，这是由于Objective-C是
 ##消息转发
 消息转发可以说是Runtime机制的核心，里面方法的实现是通过**objc_msgSend(obj,method)**传递实现的。而这又与objc\_object、objc\_class的结构有关。如图所示：
 
-![objc_object_struct](https://github.com/RexMa88/rexma88.github.com/blob/master/img/objc_object.png)
+![objc_object_struct](img/objc_object.png)
 
 ![objc_class_struct](https://github.com/RexMa88/rexma88.github.com/blob/master/img/objc_class.png)
 
