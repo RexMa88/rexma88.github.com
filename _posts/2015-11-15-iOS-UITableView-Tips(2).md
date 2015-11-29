@@ -2,7 +2,7 @@
 layout: post
 title: "iOS UITableView Tips(2)"
 subtitle: "iOS Develop"
-author": "Rex Ma"
+author: "Rex Ma"
 date: 2015-11-15 22:20:35
 header-img: "img/post-bg-01.jpg"
 ---
