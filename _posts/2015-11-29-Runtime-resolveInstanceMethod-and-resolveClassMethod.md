@@ -4,11 +4,7 @@ title: "Runtime resolveInstanceMethod and resolveClassMethod"
 subtitle: "iOS Develop"
 author: "Rex Ma"
 date: 2015-11-29 16:17:45
-<<<<<<< HEAD
-header-img: "img/post-bg-06.j"
-=======
 header-img: "img/post-bg-03.jpg"
->>>>>>> 3f0dac9a83b1eff5d6e3a4a23bf8d8b5a776e62b
 ---
 #Runtime
 Objective-C的Runtime机制想必大家并不陌生，这是由于Objective-C是动态语言所决定的，Runtime机制也可以说是在日常iOS开发中的“黑科技”兼“双刃剑”.以后我会针对这个机制进行一个长期的整理.
