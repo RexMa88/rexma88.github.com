@@ -53,5 +53,14 @@ Objective-C的Runtime机制想必大家并不陌生，这是由于Objective-C是
 
 其中_cmd就是指**本来**的方法,而obj则是指实现该方法的类.可以看出本来的方法真的是**instanceMethod**,而其中的实现(IMP)则被runtimeInstanceMethod替换了.
 
-##Method Swizzling
-既然说了可以替换掉原方法的实现，那么也可以通过class_replaceMethod()这种方式在运行时阶段，进行方法的调换.
+##Method Swizzling(函数混编)
+
+关于Method Swizzling,我先吐槽一下,其实实现代码很简单,一看就能明白,但是我很支持唐巧老师说的,一个技术实现换成了英文就变得"拽拽的",而且我觉得写这方面文章的技术人员不少了,我就不再赘述了~如果,不太了解的朋友,可以参考这篇[Blog](http://nshipster.com/method-swizzling/),我就说说在使用这个技术上应该注意什么吧~
+
+###+(void)load
+好多人知道在这个方法中实现方法的交换,但是不知道为什么~让咱们看看苹果怎么说的
+
+**The load message is sent to classes and categories that are both dynamically loaded and statically linked, but only if the newly loaded class or category implements a method that can respond......In a custom implementation of load you can therefore safely message other unrelated classes from the same image, but any load methods implemented by those classes may not have run yet.**
+
+注意：dynamic loaded~苹果自己说了动态加载,而且这方法还跟runtime绑定~也就是说你只要引用了runtime,就会被引用,**而且在+(void)load中创建一个对象时,还没有创建autorelease pool,所以你要是使用了不想被释放的变量,最好在load中创建**,在+(void)load中使用Method Swizzling是可以安全地保证你的IMP已经交换了.
+
