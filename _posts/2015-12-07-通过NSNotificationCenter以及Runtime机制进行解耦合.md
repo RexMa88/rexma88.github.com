@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "利用NSNotificationCenter解耦合消息传递"
+title: "利用通知以及Runtime机制解耦合"
 subtitle: "iOS Develop"
 author: "Rex Ma"
 date: 2015-11-29 16:17:45
 header-img: "img/post-bg-04.jpg"
 ---
-#利用NSNotificationCenter解耦合消息传递
-
 最近，看了一篇关于设计模式的文章，对于代码解耦合有了一些想法，再加上编译原理中**状态机**的概念：输出不仅和状态有关而且和输入有关系，则称为Mealy状态机.~我觉得可以利用一种通知分发的方式解决Controller之间界面跳转的耦合状态.于是,就再github上写了一个[demo](https://github.com/RexMa88/Distribution-Jump).这个demo经过好大夫的iOS工程师看了一下，感觉还算有模有样，建议我继续维护下去，所以现在还在维护ing，希望有志之士可以一同帮助我.
 
 ##NSNotificationCenter分发以及通过objc_setAssociatedObject、objc_getAssociatedObject动态关联
