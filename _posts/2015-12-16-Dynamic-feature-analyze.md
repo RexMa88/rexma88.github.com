@@ -1,3 +1,12 @@
+---
+layout: post
+title: "UIDynamic feature analyze"
+subtitle: "iOS Develop"
+author": "Rex Ma"
+date: 2015-12-16 11:25:35
+header-img: "img/post-bg-10.jpg"
+---
+
 Apple公司于2013WWDC上推出了iOS7。其中一个新特性就是UIDynamic~之前写动画的时候，很少会想到物理特性~而且就算要添加物理特性，就会有一种蛋碎的感觉=_=~但是Apple公司出了，我就看看，就写了一个小demo，这里是[链接](https://github.com/RexMa88/UIDynamic-Demo)，以后还会继续更新。
 
 #物理效果
