@@ -54,4 +54,10 @@ OK，有了载体~我们就可以把物理特效添加进去了~而且Apple对�
 看到这个变量的名称和类型~我明白了~CGVector是设置重力方向的，但是这个命名...╯︿╰好吧~这个可以设置"力的方向"。其实，看到这里都明白了，那就是gravityDirection + magnitude = 矢量。
 
 **关于angle和gravityDirection其实是为了适应不同的人群，但效果都一样，你用那个都无所谓，如果用我亲测了一下，angle和gravityDirection会互相覆盖效果！所以，angle和gravityDirection，你二选一吧。**
-	
+
+###UICollisionBehavior
+
+碰撞效果
+
+####UICollisionBehaviorMode
+
