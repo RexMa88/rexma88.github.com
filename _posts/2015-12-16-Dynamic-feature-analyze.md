@@ -61,3 +61,5 @@ OK，有了载体~我们就可以把物理特效添加进去了~而且Apple对�
 
 ####UICollisionBehaviorMode
 
+
+

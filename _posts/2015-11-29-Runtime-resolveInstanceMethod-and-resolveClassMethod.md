@@ -57,6 +57,8 @@ Objective-C的Runtime机制想必大家并不陌生，这是由于Objective-C是
 
 关于Method Swizzling,我先吐槽一下,其实实现代码很简单,一看就能明白,但是我很支持唐巧老师说的,一个技术实现换成了英文就变得"拽拽的",而且我觉得写这方面文章的技术人员不少了,我就不再赘述了~如果,不太了解的朋友,可以参考这篇[Blog](http://nshipster.com/method-swizzling/),我就说说在使用这个技术上应该注意什么吧~
 
+曾经以为没有写过关于Method Swizzling的代码~但是在2015.12.18日早上8点10分在我的Github上看见了这部分的代码！激动ing...^_^...[代码链接](https://github.com/RexMa88/Method-Swizzling-Usage)
+
 ###+(void)load
 好多人知道在这个方法中实现方法的交换,但是不知道为什么~让咱们看看苹果怎么说的
 
