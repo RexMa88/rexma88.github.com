@@ -57,9 +57,50 @@ OK，有了载体~我们就可以把物理特效添加进去了~而且Apple对�
 
 ###UICollisionBehavior
 
-碰撞效果
+**找几个比较重要的特性说说吧**
 
-####UICollisionBehaviorMode
+####translatesReferenceBoundsIntoBoundary
 
+这个属性是要告诉碰撞效果是不是在“边”内进行,如果你选择YES的话~默认这里的边界就是[UIScreen mainScreen].bounds的宽度和高度，并且在碰撞中你可以决定碰撞的边界的大小。
 
+	- (void)setTranslatesReferenceBoundsIntoBoundaryWithInsets:(UIEdgeInsets)insets;
+
+这个方法通过修改UIEdgeInsets去改变碰撞的边界~我亲测了一下~效果还是挺不错的。
+
+**补充：这个属性为NO的时候，只是不默认屏幕为边界，如果你要是通过上面的方法修改Inset的话~还是会对边界产生碰撞的**
+
+####- (nullable UIBezierPath *)boundaryWithIdentifier:(id <NSCopying>)identifier
+
+碰撞效果不仅可以以自身屏幕的宽高作为碰撞的“边界”，你也可以通过UIBezierPath自定义碰撞效果的区域，**注意nullable这个是iOS9**的新特性，类似于swift的？和！（拆包和解包）关于iOS9的新特性，我会单独开辟一个新的章节去细说的，如果各位朋友对于UIBezierPath也不是很熟悉的话...没关系...为人民服务...蛤蛤~温故而知新~我也会单独去写一个章节的^_^。
+
+	- (void)addBoundaryWithIdentifier:(id <NSCopying>)identifier forPath:(UIBezierPath *)bezierPath;
+	- (void)addBoundaryWithIdentifier:(id <NSCopying>)identifier fromPoint:(CGPoint)p1 toPoint:(CGPoint)p2;
+	- (void)removeBoundaryWithIdentifier:(id <NSCopying>)identifier;
+	@property (nullable, nonatomic, readonly, copy) NSArray<id <NSCopying>> *boundaryIdentifiers;
+	- (void)removeAllBoundaries;
+
+关于上边这些代码都是UICollisionBehavior的内部方法。对了~关于第二个方法其实还是蛮不错的，如果UIBezierPath实在用不好的话~用**点对点**的方式构建一个边界其实还是非常不错与快捷的。
+
+####UICollisionBehaviorDelegate
+
+首先我们先看一下碰撞效果的Delegate方法吧~
+
+	- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id <UIDynamicItem>)item1 withItem:(id <UIDynamicItem>)item2 atPoint:(CGPoint)p;
+	- (void)collisionBehavior:(UICollisionBehavior *)behavior endedContactForItem:(id <UIDynamicItem>)item1 withItem:(id <UIDynamicItem>)item2;
+	- (void)collisionBehavior:(UICollisionBehavior*)behavior beganContactForItem:(id <UIDynamicItem>)item withBoundaryIdentifier:(nullable id <NSCopying>)identifier atPoint:(CGPoint)p;
+	- (void)collisionBehavior:(UICollisionBehavior*)behavior endedContactForItem:(id <UIDynamicItem>)item withBoundaryIdentifier:(nullable id <NSCopying>)identifier;
+
+先说前两个~前两个是当你的碰撞体系中的碰撞单位超过一个的时候~会调用该方法，而且这个方法可以决定你碰撞前后的行为。你可以Console出你的碰撞点，或者对某一个碰撞单位进行操作。
+
+![CollisionOne](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/CollisionDynamicOne.png)
+
+![CollisionTwo](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/CollisionDynamicTwo.png)
+
+上图为修改了Github上的某个Demo后的效果~
+
+再说后两个，由于我把这四个Delegate方法都了出来，并且都会Log出信息，**但是当你的碰撞体系中的碰撞单位只有一个的时候，便不会调用前两个方法~**
+
+![UICollisionDelegate Method](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/UICollisionDelegate.png)
+
+上图为调用顺序。
 
