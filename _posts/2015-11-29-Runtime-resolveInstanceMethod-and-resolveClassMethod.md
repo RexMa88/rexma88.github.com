@@ -66,3 +66,6 @@ Objective-C的Runtime机制想必大家并不陌生，这是由于Objective-C是
 
 注意：dynamic loaded~苹果自己说了动态加载,而且这方法还跟runtime绑定~也就是说你只要引用了runtime,就会被引用,**而且在+(void)load中创建一个对象时,还没有创建autorelease pool,所以你要是使用了不想被释放的变量,最好在load中创建**,在+(void)load中使用Method Swizzling是可以安全地保证你的IMP已经交换了.
 
+在百度知道的开源项目UITableView-FDTemplateLayoutCell中也使用了，Method Swizzling这个黑科技，但在孙源的Blog中并未提及，我上张图，方便大家学习大厂的代码风格，而且我个人**强烈推荐要学习这个开源项目中的知识，因为这个项目代码量不是很多~但是涵盖的知识点却很多~总比一个人撸AFNetWorking要舒服很多吧**
+
+![FDTemplateLayoutCell](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/Method%20Swizzling.png)

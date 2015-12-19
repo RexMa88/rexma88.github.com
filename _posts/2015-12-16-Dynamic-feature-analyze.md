@@ -103,4 +103,3 @@ OK，有了载体~我们就可以把物理特效添加进去了~而且Apple对�
 ![UICollisionDelegate Method](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/UICollisionDelegate.png)
 
 上图为调用顺序。
-
