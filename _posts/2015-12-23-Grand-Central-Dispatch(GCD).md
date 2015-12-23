@@ -56,7 +56,7 @@ header-img: "img/post-bg-11.jpg"
     
 ###串行队列与并行队列
 
-另外，队列还分为串行和并行队列，串行队列就类似于数据结构中的FIFO(First In First Out),而并行队列则按顺序添加，但不知道何时任务会完成，同一时刻有多个任务一起执行，而具体的完成顺序是由GCD决定的。
+另外，队列还分为串行和并行队列，串行队列就类似于数据结构中的FIFO(First In First Out),而并行队列则按顺序添加，但不知道何时任务会完成，同一时刻有多个任务一起执行，而具体的完成顺序是由GCD决定的。下面是定义
 
 ###队列优先级(DISPATCH\_QUEUE_PRIORITY)
 
@@ -68,9 +68,18 @@ header-img: "img/post-bg-11.jpg"
 
 ###关于Group
 
-在dispatch\_group\_t中可以添加队列，并且可以通过优先级决定哪个队列优先执行，当组中的操作全部完成时还可以通过dispatch\_grou_notify进行一个总结性操作，这里有一个小的tip，如果你希望在完成某个操作之后想做点儿什么，就可以把操作放在dispatch\_group\_notify里边。**当然，使用group可能会有点重了，如果你的操作在主线程的话~可以直接使用dispatch\_async(dispatch_get_main_queue(), ^{ //code }),这种相对轻量级的做法。**
+在dispatch\_group\_t中可以添加队列，并且可以通过优先级决定哪个队列优先执行，当组中的操作全部完成时还可以通过dispatch\_group_notify进行一个总结性操作，这里有一个小的tip，如果你希望在完成某个操作之后想做点儿什么，就可以把操作放在dispatch\_group\_notify里边。**当然，使用group可能会有点重了，如果你的操作在主线程的话~可以直接使用dispatch\_async(dispatch\_get\_main\_queue(), ^{ //code }),这种相对轻量级的做法。**
 
 ###关于延时操作
 
-GCD还专门提供了通过dispatch_after进行延时操作的方法，
+GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过dispatch\_time\_t可以获取时间间隔(uint64\_t)。如图：
 
+![dispatch_time_t](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/dispatch_time_t.png)
+
+这张图还是很好理解的，什么时候开始以及时间间隔是多少，具体的实现已经放在我的Demo中了。
+
+	dispatch_after(delaytime, dispatch_get_main_queue(), ^{
+        NSLog(@"Hello world");
+    });
+ 
+之后就很好理解了~把推迟的delaytime放进去就可以了。
