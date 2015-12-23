@@ -8,7 +8,7 @@ header-img: "img/post-bg-11.jpg"
 ---
 #Grand Central Dispatch(GCD)
 
-由于近日听美丽说和百度的技术人员说国内在多线程这块儿还是比较钟情于GCD的，**但是我个人比较喜欢容易管理的NSOperation以及国外也比较喜欢使用NSOperation，我觉得可能是大家想要的不同吧，NSOperation比较容易管理，而且定制化也比较强，但效率不及GCD。而且NSOperation是基于GCD实现的。**所以，为了能够提高我在GCD上的使用水平以及了解程度。我打算从头撸一把GCD的东西。
+由于近日听美丽说和百度的技术人员说国内在多线程这块儿还是比较钟情于GCD的，**但是我个人比较喜欢容易管理的NSOperation以及国外也比较喜欢使用NSOperation，我觉得可能是大家想要的不同吧，NSOperation比较容易管理，而且定制化也比较强，但效率不及GCD。而且NSOperation是基于GCD实现的。**所以，为了能够提高我在GCD上的使用水平以及了解程度。我打算从头撸一把GCD的东西。先来个[代码链接](https://github.com/RexMa88/Concurrent/tree/master/GrandCentralDispatch)...(由于GCD需要不断探索，代码需要不断更新)。
 
 一开始看GCD的全称Grand Central Dispatch时，又是Grand，又是Central的，一向符合Apple公司的（zhuang）气（bi）质。总感觉“我靠，好流弊啊！”，翻译中文（translate.google.cn）之后，叫“大中央调度”。
 
@@ -69,4 +69,8 @@ header-img: "img/post-bg-11.jpg"
 ###关于Group
 
 在dispatch\_group\_t中可以添加队列，并且可以通过优先级决定哪个队列优先执行，当组中的操作全部完成时还可以通过dispatch\_grou_notify进行一个总结性操作，这里有一个小的tip，如果你希望在完成某个操作之后想做点儿什么，就可以把操作放在dispatch\_group\_notify里边。**当然，使用group可能会有点重了，如果你的操作在主线程的话~可以直接使用dispatch\_async(dispatch_get_main_queue(), ^{ //code }),这种相对轻量级的做法。**
+
+###关于延时操作
+
+GCD还专门提供了通过dispatch_after进行延时操作的方法，
 
