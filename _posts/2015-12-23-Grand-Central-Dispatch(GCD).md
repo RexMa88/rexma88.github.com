@@ -8,7 +8,7 @@ header-img: "img/post-bg-11.jpg"
 ---
 #Grand Central Dispatch(GCD)
 
-由于近日听美丽说和百度的技术人员说国内在多线程这块儿还是比较钟情于GCD的，**但是我个人比较喜欢容易管理的NSOperation以及国外比较喜欢使用NSOperation，我觉得可能是大家想要的不同吧，NSOperation比较容易管理，而且定制化也比较强，但效率不及GCD。而且NSOperation是基于GCD实现的。**所以，为了能够提高我在GCD上的使用水平以及了解程度。我打算从头撸一把GCD的东西。
+由于近日听美丽说和百度的技术人员说国内在多线程这块儿还是比较钟情于GCD的，**但是我个人比较喜欢容易管理的NSOperation以及国外也比较喜欢使用NSOperation，我觉得可能是大家想要的不同吧，NSOperation比较容易管理，而且定制化也比较强，但效率不及GCD。而且NSOperation是基于GCD实现的。**所以，为了能够提高我在GCD上的使用水平以及了解程度。我打算从头撸一把GCD的东西。
 
 一开始看GCD的全称Grand Central Dispatch时，又是Grand，又是Central的，一向符合Apple公司的（zhuang）气（bi）质。总感觉“我靠，好流弊啊！”，翻译中文（translate.google.cn）之后，叫“大中央调度”。
 
