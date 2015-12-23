@@ -64,9 +64,9 @@ header-img: "img/post-bg-11.jpg"
 	
 ![dispatch_queue_priority](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/dispatch_queue_priority.png)
 
-其实，之前我一直以为Low的优先级是最低，后来看到里面优先级的宏定义之后，发现Background是最低的(INT16_MIN等于-32768)以及又通过dispatch_group（后面会讲）测试了这几个优先级，**最终敲定~当你的队列优先级都一样的时候~完成任务的顺序确实是随机的，只有当你的优先级比别的高时，才会提前完成，注意这点，如果你的队列需要某个数据，而这个数据有必须通过某个方法获取，这个时候优先级的使用是至关重要的，它可以避免崩溃以及死锁。**
+其实，之前我一直以为Low的优先级是最低，后来看到里面优先级的宏定义之后，发现Background是最低的(INT16_MIN等于-32768)以及又通过dispatch\_group（后面会讲）测试了这几个优先级，**最终敲定~当你的队列优先级都一样的时候~完成任务的顺序确实是随机的，只有当你的优先级比别的高时，才会提前完成，注意这点，如果你的队列需要某个数据，而这个数据有必须通过某个方法获取，这个时候优先级的使用是至关重要的，它可以避免崩溃以及死锁。**
 
-<!--###关于Group
+###关于Group
 
-在dispatch\_group_t中可以添加队列，并且可以通过优先级决定那个队列优先执行，当组中的操作全部完成时还可以
--->
+在dispatch\_group\_t中可以添加队列，并且可以通过优先级决定哪个队列优先执行，当组中的操作全部完成时还可以通过dispatch\_grou_notify进行一个总结性操作，这里有一个小的tip，如果你希望在完成某个操作之后想做点儿什么，就可以把操作放在dispatch\_group\_notify里边。**当然，使用group可能会有点重了，如果你的操作在主线程的话~可以直接使用dispatch\_async(dispatch_get_main_queue(), ^{ //code }),这种相对轻量级的做法。**
+
