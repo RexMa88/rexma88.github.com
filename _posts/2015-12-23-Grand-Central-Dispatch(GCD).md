@@ -83,3 +83,14 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
     });
  
 之后就很好理解了~把推迟的delaytime放进去就可以了。
+
+关于DISPATCH_TIME_NOW在GCD中的定义是0ull，而关于DISPATCH_TIME_FOREVER是~0ull。0ull是unsigned long long类型，值为0。
+
+#关于GCD高级用法
+
+**由于是GCD高级用法，所以可能说的不是非常准确，如果不准确的话，还希望客位看官给指正一下。**
+
+特别鸣谢：《iOS编程实践》的作者——Rob Napier,Mugunth Kumar以及美团移动。
+
+##信号量(dispatch_semaphore_t)
+
