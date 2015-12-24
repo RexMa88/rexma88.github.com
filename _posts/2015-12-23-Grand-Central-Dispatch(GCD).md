@@ -20,6 +20,8 @@ header-img: "img/post-bg-11.jpg"
 
 在GCD中有两种不同的处理方法，一种是dispatch_sync，另一种是dispatch_async。其实就是同步和异步。dispatch_sync就是等待完成任务才会产生回调，而dispatch_async是立刻产生回调，不会阻塞当前线程去执行下一个函数，这里给出百度知道团队孙源大神的iOS六级考试的最后一题答案[iOS六级考试](http://blog.sunnyxx.com/2014/03/06/ios_exam_0_key/)。
 
+另外，我个人建议是打断点看一下，同步和异步的执行路线，这样的话还是可以加深理解的。
+
 ##关于并发和并行
 
 之前和美丽说的商家入驻组的PHP工程师有过交流，关于这部分的概念我也想说一下，以免今后用词不够准确。我先上图(侵删)：
@@ -56,7 +58,14 @@ header-img: "img/post-bg-11.jpg"
     
 ###串行队列与并行队列
 
-另外，队列还分为串行和并行队列，串行队列就类似于数据结构中的FIFO(First In First Out),而并行队列则按顺序添加，但不知道何时任务会完成，同一时刻有多个任务一起执行，而具体的完成顺序是由GCD决定的。下面是定义
+另外，队列还分为串行和并行队列，串行队列就类似于数据结构中的FIFO(First In First Out),而并行队列则按顺序添加，但不知道何时任务会完成，同一时刻有多个任务一起执行，而具体的完成顺序是由GCD决定的。
+
+**dispatch\_get\_global\_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)用这个方法生成的队列默认是并行队列。**
+
+如果你想自定义串行或者并行队列的话，可以使用下面的方法：
+	
+	dispatch_queue_t concurrentQueue =dispatch_queue_create("RexMaConcurrentQueue", DISPATCH_QUEUE_CONCURRENT);
+	dispatch_queue_t serialQueue = dispatch_queue_create("RexMaSerialQueue", DISPATCH_QUEUE_SERIAL);
 
 ###队列优先级(DISPATCH\_QUEUE_PRIORITY)
 
@@ -84,13 +93,13 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
  
 之后就很好理解了~把推迟的delaytime放进去就可以了。
 
-关于DISPATCH_TIME_NOW在GCD中的定义是0ull，而关于DISPATCH_TIME_FOREVER是~0ull。0ull是unsigned long long类型，值为0。
+关于DISPATCH_TIME_NOW在GCD中的定义是0ull，而关于DISPATCH\_TIME\_FOREVER是~0ull。0ull是unsigned long long类型，值为0。
 
 #关于GCD高级用法
 
 **由于是GCD高级用法，所以可能说的不是非常准确，如果不准确的话，还希望客位看官给指正一下。**
 
-特别鸣谢：《iOS编程实践》的作者——Rob Napier,Mugunth Kumar以及美团移动。
+##信号量(dispatch\_semaphore\_t)
 
-##信号量(dispatch_semaphore_t)
+
 
