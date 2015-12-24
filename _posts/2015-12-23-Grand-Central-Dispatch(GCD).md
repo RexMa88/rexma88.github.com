@@ -95,11 +95,28 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 
 关于DISPATCH_TIME_NOW在GCD中的定义是0ull，而关于DISPATCH\_TIME\_FOREVER是~0ull。0ull是unsigned long long类型，值为0。
 
+##关于dispatch_once
+
+关于dispatch_once的用法，这个方法一般用在单例模式中，使用这种方式创建单例模式在线程中是安全的，具体的实现就不说了，这都是老掉牙的东西了。
+
+##关于dispatch_apply
+
+利用dispatch_apply进行遍历是一种十分高效的便利方式，不过dispatch\_apply原生的API是同步的，如下所示：
+	
+	dispatch_apply(10, queue, ^(size_t index) {
+        NSLog(@"The index is %zu",index);
+    });
+改成异步的也很简单，只要把它放在dispatch_async里边就可以了~这种利用iPhone多核心进行编程的遍历方式还有:
+	
+	[array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //step
+    }];
+
 #关于GCD高级用法
 
 **由于是GCD高级用法，所以可能说的不是非常准确，如果不准确的话，还希望客位看官给指正一下。**
 
-##信号量(dispatch\_semaphore\_t)
+##信号量(dispatch\_semaphore\_t
 
-
+如果学过操作系统的童鞋，应该知道**信号量**这个概念，信号量其实就是资源的数量，当资源数量小于0的时候动作被阻塞。所以，信号量是可以控制**并发数量**的，很像NSOperationQueue的maxConcurrentOperationCount。我个人还是比较喜欢用操作队列的这种写法，因为看起来更直观。
 
