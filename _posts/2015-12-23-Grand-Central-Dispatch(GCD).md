@@ -116,7 +116,7 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 
 **由于是GCD高级用法，所以可能说的不是非常准确，如果不准确的话，还希望客位看官给指正一下。**
 
-##信号量(dispatch\_semaphore\_t
+##信号量(dispatch\_semaphore\_t)
 
 如果学过操作系统的童鞋，应该知道**信号量**这个概念，信号量其实就是资源的数量，当资源数量小于0的时候动作被阻塞。所以，信号量是可以控制**并发数量**的，很像NSOperationQueue的maxConcurrentOperationCount。我个人还是比较喜欢用操作队列的这种写法，因为看起来更直观。
 
