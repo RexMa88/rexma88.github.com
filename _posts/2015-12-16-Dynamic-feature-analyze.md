@@ -53,7 +53,7 @@ OK，有了载体~我们就可以把物理特效添加进去了~而且Apple对�
 
 看到这个变量的名称和类型~我明白了~CGVector是设置重力方向的，但是这个命名...╯︿╰好吧~这个可以设置"力的方向"。其实，看到这里都明白了，那就是gravityDirection + magnitude = 矢量。
 
-**关于angle和gravityDirection其实是为了适应不同的人群，但效果都一样，你用那个都无所谓，如果用我亲测了一下，angle和gravityDirection会互相覆盖效果！所以，angle和gravityDirection，你二选一吧。**
+**关于angle和gravityDirection其实是为了适应不同的人群，但效果都一样，你用那个都无所谓，我亲测了一下，angle和gravityDirection会互相覆盖效果！所以，angle和gravityDirection，你二选一吧。**
 
 ###UICollisionBehavior
 
@@ -103,3 +103,19 @@ OK，有了载体~我们就可以把物理特效添加进去了~而且Apple对�
 ![UICollisionDelegate Method](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/UICollisionDelegate.png)
 
 上图为调用顺序。
+
+###UIDynamicItemBehavior
+
+这个属性是一个比较特殊的物理属性，因为它并不是代表某一种特殊的物理特性，它不是碰撞，重力，吸附等这种行为。而是为了给物体附加一些属性的。这么说可能还是不太明白= =,没关系，看完之后就明白了。
+
+这次直接把UIDynamicItemBehavior里的属性粘贴出来。
+
+	@property (readwrite, nonatomic) CGFloat elasticity; // Usually between 0 (inelastic) and 1 (collide elastically) 
+	@property (readwrite, nonatomic) CGFloat friction; // 0 being no friction between objects slide along each other
+	@property (readwrite, nonatomic) CGFloat density; // 1 by default
+	@property (readwrite, nonatomic) CGFloat resistance; // 0: no velocity damping
+	@property (readwrite, nonatomic) CGFloat angularResistance; // 0: no angular velocity damping
+	
+此刻，彰显了英文的重要性，其实我大学的时候也没学过这几个物理名词，也可能学过忘却了...= =，这四个变量依次是弹力，摩擦力，密度，阻力，角阻力（这个词可能说的不准确，如有物理系童鞋，请纠正）。注释后面是默认值以及取值范围。在我的Demo中，我在碰撞效果中添加了弹力效果，还真是挺真实的~。
+
+**关于阻力和摩擦力其实并不是一个力，摩擦力是指阻碍物体相对运动（或相对运动趋势）的力叫做摩擦力。阻力是指妨碍物体运动的作用力，称“阻力”。**
