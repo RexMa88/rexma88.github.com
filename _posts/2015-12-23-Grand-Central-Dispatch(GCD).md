@@ -120,3 +120,9 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 
 如果学过操作系统的童鞋，应该知道**信号量**这个概念，信号量其实就是资源的数量，当资源数量小于0的时候动作被阻塞。所以，信号量是可以控制**并发数量**的，很像NSOperationQueue的maxConcurrentOperationCount。我个人还是比较喜欢用操作队列的这种写法，因为看起来更直观。
 
+##队列关联数据(dispatch\_queue\_set\_specific)
+
+利用GCD的这个特性可以在队列中关联数据（包括队列），这个用法有点和runtime中的动态绑定(objc_setAssociatedObject、objc_getAssociatedObject)类似，但是由于队列关联数据不会释放和销毁，所以要传入一个销毁函数(dispatch_function_t)CFRelease,具体用法如下:
+	
+	dispatch_queue_set_specific(queue, &key, (void *)value, (dispatch_function_t)CFRelease);
+	dispatch_get_specific(&key);
