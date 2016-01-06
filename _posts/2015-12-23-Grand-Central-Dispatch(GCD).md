@@ -10,8 +10,6 @@ header-img: "img/post-bg-11.jpg"
 
 由于近日听美丽说和百度的技术人员说国内在多线程这块儿还是比较钟情于GCD的，**但是我个人比较喜欢容易管理的NSOperation以及国外也比较喜欢使用NSOperation，我觉得可能是大家想要的不同吧，NSOperation比较容易管理，而且定制化也比较强，但效率不及GCD。而且NSOperation是基于GCD实现的。**所以，为了能够提高我在GCD上的使用水平以及了解程度。我打算从头撸一把GCD的东西。先来个[代码链接](https://github.com/RexMa88/Concurrent/tree/master/GrandCentralDispatch)...(由于GCD需要不断探索，代码需要不断更新)。
 
-一开始看GCD的全称Grand Central Dispatch时，又是Grand，又是Central的，一向符合Apple公司的（zhuang）气（bi）质。总感觉“我靠，好流弊啊！”，翻译中文（translate.google.cn）之后，叫“大中央调度”。
-
 ##关于Block
 
 在写这篇文章之前，我看了一下唐巧老师的Blog，感觉的写的还是挺不错的~也提及了Block的事情，但是还不够全面，这里给出一个网址，Block绝对包会。[http://fuckingblocksyntax.com/](http://fuckingblocksyntax.com/)。**另外关于Block，我还是建议要好好运用的~因为在Apple的新语言swift中，Block换了个名字，叫闭包，它在swift语言中的地位堪比亲儿子，运用起来十分的灵活。**
@@ -126,3 +124,5 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 	
 	dispatch_queue_set_specific(queue, &key, (void *)value, (dispatch_function_t)CFRelease);
 	dispatch_get_specific(&key);
+	
+我在自己编写的Distribution项目中，封装了这个方法，[链接](https://github.com/RexMa88/Distribution-Jump/blob/master/pushOrPop/RMAsyncQueue.h).
