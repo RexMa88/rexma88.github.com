@@ -37,6 +37,7 @@ header-img: "img/post-bg-11.jpg"
 
 在GCD中，你可以使用后台线程，也可以使用主线程，也可以自定义一个线程。
 
+	//后台线程
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         //code
@@ -54,6 +55,10 @@ header-img: "img/post-bg-11.jpg"
     });
     dispatch_release(customQueue);//不要忘记释放队列
     
+###关于dispatch_get_global和dispatch_queue_create
+
+虽然dispatch_get_global可以创建串行还是并行队列，但是在使用上还是有差别的，我在stackoverflow中找到了答案，[链接](http://stackoverflow.com/questions/10984885/what-is-the-difference-between-dispatch-get-global-queue-and-dispatch-queue-crea)，大意就是dispatch_get_global更加适合创建并发的队列，而dispatch_queue_create更适合创建串行队列。
+
 ###串行队列与并行队列
 
 另外，队列还分为串行和并行队列，串行队列就类似于数据结构中的FIFO(First In First Out),而并行队列则按顺序添加，但不知道何时任务会完成，同一时刻有多个任务一起执行，而具体的完成顺序是由GCD决定的。
