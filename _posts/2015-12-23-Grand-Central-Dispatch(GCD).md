@@ -8,7 +8,7 @@ header-img: "img/post-bg-11.jpg"
 ---
 #Grand Central Dispatch(GCD)
 
-由于近日听美丽说和百度的技术人员说国内在多线程这块儿还是比较钟情于GCD的，**但是我个人比较喜欢容易管理的NSOperation以及国外也比较喜欢使用NSOperation，我觉得可能是大家想要的不同吧，NSOperation比较容易管理，而且定制化也比较强，但效率不及GCD。而且NSOperation是基于GCD实现的。**所以，为了能够提高我在GCD上的使用水平以及了解程度。我打算从头撸一把GCD的东西。先来个[代码链接](https://github.com/RexMa88/Concurrent/tree/master/GrandCentralDispatch)...(由于GCD需要不断探索，代码需要不断更新)。
+由于近日听说国内在多线程这块儿还是比较钟情于GCD的，**但是我个人比较喜欢容易管理的NSOperation以及国外也比较喜欢使用NSOperation，我觉得可能是大家想要的不同吧，NSOperation比较容易管理，而且定制化也比较强，但效率不及GCD。而且NSOperation是基于GCD实现的。**所以，为了能够提高我在GCD上的使用水平以及了解程度。我打算从头撸一把GCD的东西。先来个[代码链接](https://github.com/RexMa88/Concurrent/tree/master/GrandCentralDispatch)...(由于GCD需要不断探索，代码需要不断更新)。
 
 ##关于Block
 
@@ -22,7 +22,7 @@ header-img: "img/post-bg-11.jpg"
 
 ##关于并发和并行
 
-之前和美丽说的商家入驻组的PHP工程师有过交流，关于这部分的概念我也想说一下，以免今后用词不够准确。我先上图(侵删)：
+关于这部分的概念我也想说一下，以免今后用词不够准确。我先上图(侵删)：
 
 ![concurrencyAndParallelism](http://machaotest.oss-cn-beijing.aliyuncs.com/picture/ConcurrencyAndParallelism.png)
 
@@ -55,9 +55,9 @@ header-img: "img/post-bg-11.jpg"
     });
     dispatch_release(customQueue);//不要忘记释放队列
     
-###关于dispatch_get_global和dispatch_queue_create
+###dispatch_get_global VS dispatch_queue_create
 
-虽然dispatch_get_global可以创建串行还是并行队列，但是在使用上还是有差别的，我在stackoverflow中找到了答案，[链接](http://stackoverflow.com/questions/10984885/what-is-the-difference-between-dispatch-get-global-queue-and-dispatch-queue-crea)，大意就是dispatch_get_global更加适合创建并发的队列，而dispatch_queue_create更适合创建串行队列。
+虽然dispatch_get_global可以创建串行和并行队列，但是在使用上还是有差别的，我在stackoverflow中找到了答案，[链接](http://stackoverflow.com/questions/10984885/what-is-the-difference-between-dispatch-get-global-queue-and-dispatch-queue-crea)，大意就是dispatch_get_global更加适合创建并发的队列，而dispatch_queue_create更适合创建串行队列。
 
 ###串行队列与并行队列
 
