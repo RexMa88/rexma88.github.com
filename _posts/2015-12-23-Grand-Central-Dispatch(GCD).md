@@ -121,7 +121,16 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 
 ##信号量(dispatch\_semaphore\_t)
 
-如果学过操作系统的童鞋，应该知道**信号量**这个概念，信号量其实就是资源的数量，当资源数量小于0的时候动作被阻塞。所以，信号量是可以控制**并发数量**的，很像NSOperationQueue的maxConcurrentOperationCount。我个人还是比较喜欢用操作队列的这种写法，因为看起来更直观。
+如果学过操作系统的童鞋，应该知道**信号量**这个概念，信号量其实就是资源的数量，当资源数量小于0的时候动作被阻塞。所以，信号量是可以控制**并发数量**的，很像NSOperationQueue的maxConcurrentOperationCount。我个人还是比较喜欢用操作队列的这种写法，因为看起来更直观。但还是说说如何使用dispatch\_semaphore\_t吧。
+	
+	//创建信号量，初始值为1
+	dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+	//信号量减1，如果此时信号量已经为0，再减1的话，可以通过设置DISPATCH_TIME_FOREVER一直等待.
+	long dispatch_semaphore_wait(dispatch_semaphore_t dsema, dispatch_time_t timeout);
+	//信号量加1
+	long dispatch_semaphore_signal(dispatch_semaphore_t dsema);
+	
+可以通过加1、减1操作对现有资源进行同步并发操作。譬如我设置3个资源，此时信号量初始值为3，当我有5个事情需要做的时候，可以先放进去3个并发执行，剩下的2个等待...完成1个之后，就塞进去1个去执行。
 
 ##队列关联数据(dispatch\_queue\_set\_specific)
 
