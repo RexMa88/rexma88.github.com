@@ -134,7 +134,19 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 
 ##队列关联数据(dispatch\_queue\_set\_specific)
 
-利用GCD的这个特性可以在队列中关联数据（包括队列），这个用法有点和runtime中的动态绑定(objc_setAssociatedObject、objc_getAssociatedObject)类似，但是由于队列关联数据不会释放和销毁，所以要传入一个销毁函数(dispatch_function_t)CFRelease,具体用法如下:
+###为啥废除dispatch\_get\_current_queue()
+
+说队列关联数据之前，我想先说说Apple已经废除的的一个方法：dispatch\_get\_current\_queue，之前有人说这个方法会引起死锁，但是也没说清楚引起死锁的情况。我就说一种情况进行说明吧。在ViewDidLoad中：
+	
+	dispatch_sync(dispatch_get_current_queue(),^{
+		//doing Something;
+	});
+
+此时，dispatch\_get\_current\_queue() == dispatch\_get\_main\_queue()，但现在是同步的，处于互相等待结束的状态，所以就会引起死锁。
+
+###可以用dispatch\_queue\_set\_specific代替
+
+利用GCD的这个特性可以在队列中关联数据（包括队列），这个用法有点和runtime中的动态绑定(objc\_setAssociatedObject、objc\_getAssociatedObject)类似，但是由于队列关联数据不会释放和销毁，所以要传入一个销毁函数(dispatch\_function_t)CFRelease,具体用法如下:
 	
 	dispatch_queue_set_specific(queue, &key, (void *)value, (dispatch_function_t)CFRelease);
 	dispatch_get_specific(&key);
