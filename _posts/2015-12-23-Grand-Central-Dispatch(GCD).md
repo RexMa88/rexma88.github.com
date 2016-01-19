@@ -119,6 +119,31 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 
 **由于是GCD高级用法，所以可能说的不是非常准确，如果不准确的话，还希望客位看官给指正一下。**
 
+##分派源(dispatch\_source\_t)
+
+分派源处理是一种十分高效处理事务的方法，我写了个demo。在这里说先说明一下用法吧。
+
+	//创建一个分派源
+	dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0,dispatch_get_global_queue(0, 0));
+	//分派源需要处理的事务
+	dispatch_source_set_event_handler(source,^{
+		//获取分派源发来的数据;
+		id value = dispatch_source_get_data(source);
+	});
+	//由于分派源创建之后默认是暂停的，所以需要使用dispatch_resume去启动
+	dispatch_resume(source);
+	
+这里用一种十分高效的分派源传递数据的方法。
+	
+	dispatch_queue_t queue = dispatch_get_global(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	
+	for(NSUInteger index = 0; index < 100; index++){
+		dispatch_async(queue, ^{
+			//给分派源发数据
+			dispatch_source_merge_data(source, value);
+		});
+	}	
+
 ##信号量(dispatch\_semaphore\_t)
 
 如果学过操作系统的童鞋，应该知道**信号量**这个概念，信号量其实就是资源的数量，当资源数量小于0的时候动作被阻塞。所以，信号量是可以控制**并发数量**的，很像NSOperationQueue的maxConcurrentOperationCount。我个人还是比较喜欢用操作队列的这种写法，因为看起来更直观。但还是说说如何使用dispatch\_semaphore\_t吧。
