@@ -57,7 +57,7 @@ header-img: "img/post-bg-11.jpg"
     
 ###dispatch_get_global VS dispatch_queue_create
 
-虽然dispatch_get_global可以创建串行和并行队列，但是在使用上还是有差别的，我在stackoverflow中找到了答案，[链接](http://stackoverflow.com/questions/10984885/what-is-the-difference-between-dispatch-get-global-queue-and-dispatch-queue-crea)，大意就是dispatch_get_global更加适合创建并发的队列，而dispatch_queue_create更适合创建串行队列。
+我在stackoverflow中找到了关于这两种队列区别的答案，[链接](http://stackoverflow.com/questions/10984885/what-is-the-difference-between-dispatch-get-global-queue-and-dispatch-queue-crea)，大意就是dispatch_get_global更加适合创建并发的队列，而dispatch_queue_create更适合创建串行队列。
 
 ###串行队列与并行队列
 
