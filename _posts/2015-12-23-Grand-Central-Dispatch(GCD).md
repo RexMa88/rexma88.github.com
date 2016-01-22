@@ -104,11 +104,17 @@ GCD还专门提供了通过dispatch\_after进行延时操作的方法，通过di
 
 ##关于dispatch_apply
 
-利用dispatch_apply进行遍历是一种十分高效的便利方式，不过dispatch\_apply原生的API是同步的，如下所示：
+利用dispatch_apply是一种十分高效的迭代方式，如果你的迭代是独立的(前后数据互不影响)可以使用并发队列，dispatch\_apply原生的API是同步的，如下所示：
 	
+	//创建一个并发队列
+	dispatch_queue_t queue = dispatch_get_global(DISPATCH_QUEUE_PRIORITY,0);
+	//dispatch_apply同步执行
 	dispatch_apply(10, queue, ^(size_t index) {
         NSLog(@"The index is %zu",index);
     });
+    
+**注：dispatch\_get\_main()在dispatch\_apply是不起作用的，如果你想串行，可以使用dispatch\_queue_create()创建串行队列。**
+
 改成异步的也很简单，只要把它放在dispatch_async里边就可以了~这种利用iPhone多核心进行编程的遍历方式还有:
 	
 	[array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
