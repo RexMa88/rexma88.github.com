@@ -1,14 +1,14 @@
-
 ---
 layout: post
-title: "ReactiveCocoa(1)"
+title: "NSRunLoop与线程"
 subtitle: "iOS Develop"
 author: "Rex Ma"
-date: 2016-02-15 20:20:00
-header-img: "img/post-bg-14.jpg"
+date: 2016-01-27 11:15:35
+header-img: "img/post-bg-05.jpg"
 ---
 
 #关于ReaciveCocoa
+
 关于ReactiveCocoa的介绍，请点击[链接](http://nshipster.cn/reactivecocoa/).Mattt Thompson已经说得非常细致了，本系列只是为了让所有想快速实践ReactiveCocoa却无从下手的筒子们快速上手实践，在讲解过程中，也会融入理论知识。
 
 ##如何实现一个最简单的ReactiveCocoa程序
