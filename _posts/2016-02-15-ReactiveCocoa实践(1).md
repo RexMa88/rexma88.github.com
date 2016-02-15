@@ -1,11 +1,11 @@
 
 ---
 layout: post
-title: "ReactiveCocoa实践(1)"
+title: "ReactiveCocoa(1)"
 subtitle: "iOS Develop"
 author: "Rex Ma"
 date: 2016-02-15 20:20:00
-header: "img/post-bg-02.jpg"
+header-img: "img/post-bg-14.jpg"
 ---
 
 #关于ReaciveCocoa
