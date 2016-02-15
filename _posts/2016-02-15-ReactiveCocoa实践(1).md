@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "NSRunLoop与线程"
+title: "ReaciveCocoa实践(1)"
 subtitle: "iOS Develop"
 author: "Rex Ma"
-date: 2016-01-27 11:15:35
-header-img: "img/post-bg-05.jpg"
+date: 2016-02-15 20:30:35
+header-img: "img/post-bg-14.jpg"
 ---
 
 #关于ReaciveCocoa
