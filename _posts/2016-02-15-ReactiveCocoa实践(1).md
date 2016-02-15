@@ -30,11 +30,3 @@ header-img: "img/post-bg-14.jpg"
 
     
 嗯呢~这就是一个非常简单的ReactiveCocoa程序，运行之后~你在UITextField上输入一个字符，便会NSLog出一个字符，而且是实时的。从这段代码中，我们可以看出两个看不懂的东西，这两个东西将作为ReactiveCocoa实践的重中之重。分别是：Signal(信号)，Subscribe(订阅)。
-
-
-##RACSignal
-
-
-
-   
-
