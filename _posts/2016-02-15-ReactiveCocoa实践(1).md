@@ -3,9 +3,9 @@
 layout: post
 title: "ReactiveCocoa实践(1)"
 subtitle: "iOS Develop"
-author": "Rex Ma"
-date: 2016-02-15 21:00:00
-header-img: "img/post-bg-02.jpg"
+author: "Rex Ma"
+date: 2016-02-15 20:20:00
+header: "img/post-bg-02.jpg"
 ---
 
 #关于ReaciveCocoa
