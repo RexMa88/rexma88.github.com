@@ -1,33 +1,75 @@
 ---
 layout: post
-title: "ReaciveCocoa实践(1)"
+title: "ReactiveCocoa(1)"
 subtitle: "iOS Develop"
 author: "Rex Ma"
-date: 2016-02-15 20:30:35
+date: 2016-02-15 20:45:35
 header-img: "img/post-bg-14.jpg"
 ---
 
-#关于ReaciveCocoa
+#关于RunLoop
 
-关于ReactiveCocoa的介绍，请点击[链接](http://nshipster.cn/reactivecocoa/).Mattt Thompson已经说得非常细致了，本系列只是为了让所有想快速实践ReactiveCocoa却无从下手的筒子们快速上手实践，在讲解过程中，也会融入理论知识。
+之前的Blog中说以后可能不太会涉及RunLoop的知识，不是畏难，而是已经有了不错的讲解RunLoop的视频了。但今天探讨的是线程和RunLoop之间的关系，这部分在视频里讲的并不是很多，所以单独拿出来说说。
 
-##如何实现一个最简单的ReactiveCocoa程序
+##先说RunLoop这东西是啥？
 
-先拔出一个已经烂了大街的Demo，大家都用它来说ReactiveCocoa~~
+RunLoop就是“跑圈”，RunLoop可以说是app运行的立命之本，我们的app之所以能够及时响应并且保持运行，和RunLoop的关系是密不可分的。不了解RunLoop的还是推荐先看看视频,视频里说的还是非常细致的.[视频链接](http://yun.baidu.com/share/link?shareid=2268593032&uk=2885973690).我这里说说获取RunLoop的方法。
+	
+**Foundation获取方式**
 
-	_textfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 100, 200, 30)];
-    _textfield.borderStyle = UITextBorderStyleRoundedRect;
-    [self.view addSubview:_textfield];
+	//获取当前RunLoop
+	[NSRunLoop currentRunLoop];
+	//获取主线程RunLoop
+	[NSRunLoop mainRunLoop];
+	
+**Core Foundation获取方式**
+
+	//获取当前RunLoop
+	CFRunLoopGetCurrent()
+	//获取主线程RunLoop
+	CFRunLoopGetMain()
+	
+#RunLoop和线程的关系
+
+这篇文章主要讨论的就是RunLoop和线程之间的关系。先Show Code...
+
+	//主线程运行
+	[self performSelectorOnMainThread:@selector(mainThreadRun) 
+								withObject:nil
+	 						waitUntilDone:YES];
+	 						
+	- (void)mainThreadRun{
+    	[NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(doSomeThing) userInfo:nil repeats:YES];
+	}
+
+嗯~这段代码可以正常运行且循环运行doSomeThing。再看下面这段代码...
+	
+	//子线程运行
+	NSThread *thread = [[NSThread alloc] initWithTarget:self
+                                               selector:@selector(threadRun)
+                                                 object:nil];
+    [thread start];
     
-    [_textfield.rac_textSignal subscribeNext:^(NSString *value) {
-        NSLog(@"The value is %@",value);
-    }];
-    
-嗯呢~这就是一个非常简单的ReactiveCocoa程序，运行之后~你在UITextField上输入一个字符，便会NSLog出一个字符，而且是实时的。从这段代码中，我们可以看出两个看不懂的东西，这两个东西将作为ReactiveCocoa实践的重中之重。分别是：Signal(信号)，Subscribe(订阅)。
-
-##RACSignal
-
-
-
-   
-
+    - (void)threadRun{
+    	@autoreleasepool {
+        	[NSTimer scheduledTimerWithTimeInterval:2.0f
+                                         target:self
+                                       selector:@selector(doSomeThing)
+                                       userInfo:nil
+                                        repeats:YES];
+   		}
+	}
+	
+由于子线程中不会创建自动释放池，需手动释放。但是这不是重点....重点是这段代码没有运行doSomeThing，很奇怪吧，为什么呢~因为RunLoop在主线程中是开启的，但是在子线程中，RunLoop只有通过手动创建才会开启，而开启的方式就是上面获取RunLoop的方法。所以只要稍微改动一下上面的代码~就可以运行了。只要修改threadRun方法。如下：
+	
+	- (void)threadRun{
+		@autoreleasepool {
+        	[NSTimer scheduledTimerWithTimeInterval:2.0f
+                                         target:self
+                                       selector:@selector(doSomeThing)
+                                       userInfo:nil
+                                        repeats:YES];
+          
+         	[NSRunLoop currentRunLoop] run];
+   		}
+	}
