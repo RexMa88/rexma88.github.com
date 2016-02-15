@@ -3,9 +3,9 @@
 layout: post
 title: "ReactiveCocoa实践(1)"
 subtitle: "iOS Develop"
-author: "Rex Ma"
+author": "Rex Ma"
 date: 2016-02-15 20:00:00
-header-img: "img/post-bg-03.jpg"
+header-img: "img/post-bg-02.jpg"
 ---
 
 关于ReactiveCocoa的介绍，请点击[链接](http://nshipster.cn/reactivecocoa/).Mattt Thompson已经说得非常细致了，本系列只是为了让所有想快速实践ReactiveCocoa却无从下手的筒子们快速上手实践，在讲解过程中，也会融入理论知识。
